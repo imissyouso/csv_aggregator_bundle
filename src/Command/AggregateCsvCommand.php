@@ -58,7 +58,7 @@ class AggregateCsvCommand extends Command
             ->setDescription('Recursive csv metrics aggregator')
             ->addArgument('sourcePath', InputArgument::REQUIRED, 'CSV directory path')
             ->addArgument('outPath', InputArgument::REQUIRED, 'Result CSV file path')
-            ->addArgument('header', InputArgument::OPTIONAL, 'CSV header pattern', 'date|A|B|C');
+            ->addArgument('header', InputArgument::OPTIONAL, 'CSV header pattern', 'date;A;B;C');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
@@ -69,7 +69,7 @@ class AggregateCsvCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $expectedHeader = explode('|', $input->getArgument('header'));
+        $expectedHeader = explode(';', $input->getArgument('header'));
         $sourceDir = $input->getArgument('sourcePath');
         $outPath = $input->getArgument('outPath');
 

@@ -20,7 +20,8 @@ class AggregateCsvCommandTest extends KernelTestCase
         $outPath = __DIR__.'/../data/out/result.csv';
         $commandTester->execute([
             'sourcePath' => __DIR__.'/../data/in',
-            'outPath' => $outPath
+            'outPath' => $outPath,
+            'header' => 'date;A;B;C'
         ]);
 
         $output = $commandTester->getDisplay();
