@@ -7,6 +7,7 @@ use imissyouso\CsvAggregatorBundle\AggregateStrategy\AggregateStrategyInterface;
 use imissyouso\CsvAggregatorBundle\HashKeyConverter\HashConverterInterface;
 use imissyouso\CsvAggregatorBundle\Storage\StorageInterface;
 
+// @TODO: move IO operations to another class, but do we really need it? in pursuit of 'S' it sounds like the real over engineering.
 class HashMapFileStorage implements StorageInterface
 {
     /**
@@ -146,17 +147,11 @@ class HashMapFileStorage implements StorageInterface
 
     protected function save(int $offset, int $rowNameHash, array $values): void
     {
-        // If prev chunk is already loaded then get it without file reading
-        if($this->prevChunk && $this->prevChunk->getKey() === $rowNameHash){
-            $chunk = $this->prevChunk;
-        } else {
-            // if prev chunk exists and current key is differ then write prev chunk on the disk
-            if($this->prevChunk){
-                $this->writeChunk($this->prevChunk);
-            }
+        $chunk = $this->tryToReadChunkFromMemory($offset, $rowNameHash);
 
-            // read chunk from the file
-            $chunk = $this->readChunk($offset);
+        // if prev chunk exists and current key is differ then write prev chunk on the disk
+        if($this->prevChunk && $this->prevChunk->getKey() !== $rowNameHash){
+            $this->writeChunk($this->prevChunk);
         }
 
         // If the place is already filled and has a link to another place in memory then jump there and try to save again
@@ -199,6 +194,16 @@ class HashMapFileStorage implements StorageInterface
         $parsedLinkToTheNextChunk = unpack('L', $chunk, $this->getChunkSize() - 4)[1];
 
         return new DataChunk(0, $parsedRowNameHash, $parsedValues, $parsedLinkToTheNextChunk);
+    }
+
+    protected function tryToReadChunkFromMemory(int $offset, int $rowNameHash): ?DataChunk
+    {
+        // If prev chunk is already loaded then get it without file reading
+        if($this->prevChunk && $this->prevChunk->getKey() === $rowNameHash){
+            return $this->prevChunk;
+        }
+
+        return $this->readChunk($offset);
     }
 
     protected function readChunk(int $offset): DataChunk {
