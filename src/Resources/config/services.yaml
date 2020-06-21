@@ -1,0 +1,19 @@
+parameters:
+  csv_aggregator.default_csv_delimiter: ';'
+  csv_aggregator.storage.hash_map_file.default_bucket_size: 1024
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  imissyouso\CsvAggregatorBundle\:
+    resource: '../../*'
+
+  imissyouso\CsvAggregatorBundle\Command\AggregateCsvCommand:
+    arguments:
+      $csvDelimiter: '%csv_aggregator.default_csv_delimiter%'
+
+  imissyouso\CsvAggregatorBundle\Storage\HashMapFileStorage\HashMapFileStorage:
+    arguments:
+      $hashMapBucketSize: '%csv_aggregator.storage.hash_map_file.default_bucket_size%'

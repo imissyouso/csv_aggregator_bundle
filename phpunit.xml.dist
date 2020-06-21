@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./Tests/bootstrap.php" colors="true">
+
+    <php>
+        <env name="KERNEL_CLASS" value="imissyouso\CsvAggregatorBundle\Tests\App\AppKernel" />
+    </php>
+
+    <testsuites>
+        <testsuite name="CsvAggregatorBundle test suite">
+            <directory suffix="Test.php">./Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./tests</directory>
+        </whitelist>
+    </filter>
+</phpunit>
