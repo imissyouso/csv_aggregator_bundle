@@ -2,35 +2,39 @@
 
 ## Installation
 1. Add the next lines to your `composer.json`
-    ```json
-    ...
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/imissyouso/csv_aggregator_bundle"
-        }
-    ]
-    ...
-    ```
-    ```json
-    ...
-    "minimum-stability": "dev"
-    ...
-    ```
+```json
+...
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/imissyouso/csv_aggregator_bundle"
+    }
+]
+...
+```
+```json
+...
+"minimum-stability": "dev"
+...
+```
 2. Run
-> ``$ composer require imissyouso/csv_aggregator_bundle``
+```bash
+$ composer require imissyouso/csv_aggregator_bundle
+```
 
 ## Usage
-> ``$ bin/console csv:aggregate <sourcePath> <outPath> [<header>]``
-```
-> Arguments:
->   sourcePath            CSV directory path
->   outPath               Result CSV file path
->   header                CSV header pattern [default: "date|A|B|C"]
+```bash
+$ bin/console csv:aggregate <sourcePath> <outPath> [<header>]
+
+Arguments:
+   sourcePath            CSV directory path
+   outPath               Result CSV file path
+   header                CSV header pattern [default: "date|A|B|C"]
 ```
 For example:
-> ```$ bin/console csv:aggregate data result.csv```
-
+```bash
+$ bin/console csv:aggregate data result.csv
+```
 by this way it will scan the `data` directory. The output file will be named `result.csv`.
 
 ## Comments
