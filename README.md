@@ -1,7 +1,7 @@
 # Symfony CSV metrics aggregator bundle (demo task)
 
 ## Installation
-1. Add the next lines to your `composer.json`
+1. Add the next lines to your `composer.json`:
 ```json
 ...
 "repositories": [
@@ -17,7 +17,7 @@
 "minimum-stability": "dev"
 ...
 ```
-2. Run
+2. Run:
 ```bash
 $ composer require imissyouso/csv_aggregator_bundle
 ```
