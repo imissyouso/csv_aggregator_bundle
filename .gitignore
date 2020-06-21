@@ -23,3 +23,5 @@
 
 composer.lock
 tests/data/out/*
+symfony.lock
+tests/data/out/
