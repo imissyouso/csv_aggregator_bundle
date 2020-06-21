@@ -5,8 +5,14 @@ namespace imissyouso\CsvAggregatorBundle\Entity;
 
 class MetricRow
 {
+    /**
+     * @var string
+     */
     private $rowName;
 
+    /**
+     * @var array
+     */
     private $values;
 
     /**
