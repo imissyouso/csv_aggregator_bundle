@@ -22,6 +22,7 @@
 .idea
 
 composer.lock
-tests/data/out/*
 symfony.lock
-tests/data/out/
+tests/data/out/*
+
+!**/.gitkeep
