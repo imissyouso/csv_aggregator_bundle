@@ -19,6 +19,7 @@ class MetricRow
      * MetricValue constructor.
      *
      * @param string $rowName
+     * @param array $values
      */
     public function __construct($rowName, array $values)
     {
