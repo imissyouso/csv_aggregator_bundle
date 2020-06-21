@@ -127,7 +127,6 @@ class MetricsRowProcessorTest extends TestCase
             [
                 '2015-01-03',
                 3,
-                2,
             ],
             [
                 3,
