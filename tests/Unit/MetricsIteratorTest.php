@@ -66,13 +66,13 @@ class MetricsIteratorTest extends TestCase
 
                 // Check a key too
                 $this->assertInstanceOf(MetricRow::class, $metricRow);
-                $this->assertEquals($key, $iterationNum);
-                $this->assertEquals($metricRow->getRowName(), $sampleData[$key+1][0]);
-                $this->assertEquals($metricRow->getValues(), array_slice($sampleData[$key+1], 1));
+                $this->assertEquals($iterationNum, $key);
+                $this->assertEquals($sampleData[$key+1][0], $metricRow->getRowName());
+                $this->assertEquals(array_slice($sampleData[$key+1], 1), $metricRow->getValues());
                 $iterationNum++;
             }
 
-            $this->assertEquals($iterationNum, count($sampleData) - 1);
+            $this->assertEquals(count($sampleData) - 1, $iterationNum);
         }
     }
 

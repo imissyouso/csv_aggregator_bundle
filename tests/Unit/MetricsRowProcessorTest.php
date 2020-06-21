@@ -18,8 +18,8 @@ class MetricsRowProcessorTest extends TestCase
 
         foreach ($dataWithoutHeader as $i => $line) {
             $metricRow = $defaultRowProcessor->process($header, $line);
-            $this->assertEquals($metricRow->getRowName(), $line[0]);
-            $this->assertEquals($metricRow->getValues(), array_slice($line, 1));
+            $this->assertEquals($line[0], $metricRow->getRowName());
+            $this->assertEquals(array_slice($line, 1), $metricRow->getValues());
         }
     }
 
@@ -37,7 +37,7 @@ class MetricsRowProcessorTest extends TestCase
 
             $outputMetricRow = $defaultRowProcessor->process($header, $inputMetricLine);
 
-            $this->assertEquals($outputMetricRow->getRowName(), $inputMetricLineName);
+            $this->assertEquals($inputMetricLineName, $outputMetricRow->getRowName());
 
             $outputMetrics = $outputMetricRow->getValues();
 
