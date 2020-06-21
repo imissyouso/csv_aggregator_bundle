@@ -29,7 +29,7 @@ $ bin/console csv:aggregate <sourcePath> <outPath> [<header>]
 Arguments:
    sourcePath            CSV directory path
    outPath               Result CSV file path
-   header                CSV header pattern [default: "date|A|B|C"]
+   header                CSV header pattern [default: "date;A;B;C"]
 ```
 For example:
 ```bash
