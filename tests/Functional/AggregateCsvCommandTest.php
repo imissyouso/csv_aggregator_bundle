@@ -29,7 +29,7 @@ class AggregateCsvCommandTest extends KernelTestCase
 
         $resultFileContent = file_get_contents($outPath);
 
-        $expectedContent = "date;A;B;C\n2018-03-01;24;32;24\n2018-03-02;20;28;24.24\n2018-03-03;4;8;4.24\n";
+        $expectedContent = "date;A;B;C\n2;0;0;0\n2018-03-01;24;32;23.05\n2018-03-02;15;21;18.18\n2018-03-03;4;8;4.24\n";
 
         $this->assertEquals($expectedContent, $resultFileContent);
 
