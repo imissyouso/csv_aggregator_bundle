@@ -25,6 +25,9 @@ abstract class AbstractMetricsAggregator
 
     /**
      * AbstractMetricsAggregator constructor.
+     * @param StorageInterface $storage
+     * @param WriterInterface $writer
+     * @param array $header
      */
     public function __construct(StorageInterface $storage, WriterInterface $writer, array $header)
     {
@@ -45,8 +48,8 @@ abstract class AbstractMetricsAggregator
 
         $this->writer->write($this->rowToString($this->header));
 
-        foreach ($this->storage as $date => $row) {
-            array_unshift($row, $date);
+        foreach ($this->storage as $key => $row) {
+            array_unshift($row, $key);
             $this->writer->write($this->rowToString($row));
         }
 
