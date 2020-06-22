@@ -163,9 +163,12 @@ class HashMapFileStorage implements StorageInterface
         if (!$chunk->getKey() || $chunk->getKey() === $rowNameHash) {
             // Aggregate values here if aggregator is set
             $chunkValues = $chunk->getValues();
-            foreach ($chunkValues as $i => $chunkValue) {
+            for($i = 0; $i < $this->valuesPerRow; $i++){
+                $currentValue = $values[$i] ?? 0;
                 if ($this->aggregateStrategy) {
-                    $values[$i] = $this->aggregateStrategy->apply($chunkValue, $values[$i]);
+                    $values[$i] = $this->aggregateStrategy->apply($chunkValues[$i], $currentValue);
+                } else {
+                    $values[$i] = $currentValue;
                 }
             }
 
