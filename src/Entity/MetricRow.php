@@ -21,24 +21,24 @@ class MetricRow
      * @param string $rowName
      * @param array $values
      */
-    public function __construct($rowName, array $values)
+    public function __construct(string $rowName, array $values)
     {
         $this->rowName = $rowName;
         $this->values = $values;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getRowName()
+    public function getRowName(): string
     {
         return $this->rowName;
     }
 
     /**
-     * @param mixed $rowName
+     * @param string $rowName
      */
-    public function setRowName($rowName): void
+    public function setRowName(string $rowName): void
     {
         $this->rowName = $rowName;
     }
@@ -46,15 +46,15 @@ class MetricRow
     /**
      * @return array
      */
-    public function getValues()
+    public function getValues(): array
     {
         return $this->values;
     }
 
     /**
-     * @param mixed $values
+     * @param array $values
      */
-    public function setValues($values): void
+    public function setValues(array $values): void
     {
         $this->values = $values;
     }

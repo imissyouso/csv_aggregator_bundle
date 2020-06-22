@@ -20,6 +20,11 @@ class DefaultMetricsRowProcessor implements MetricsRowProcessorInterface
         }
 
         $rowName = array_shift($row);
+
+        if($rowName){
+            $rowName = (string)$rowName;
+        }
+
         array_shift($header);
 
         $result = [];
