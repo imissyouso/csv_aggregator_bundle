@@ -49,20 +49,16 @@ class HashMapFileStorageTest extends TestCase
         );
 
         $map = [];
-        foreach ($this->sampleData() as $k => $v) {
-            if (isset($map[$k])) {
-                $map[$k] = array_map(
-                    static function () {
-                        return array_sum(func_get_args());
-                    },
-                    $map[$k],
-                    $v
-                );
-            } else {
-                $map[$k] = $v;
+        foreach ($this->sampleData() as $key => $sampleValues) {
+            if(!isset($map[$key])){
+                $map[$key] = array_fill(0, 3, 0);
             }
 
-            $storage->put($k, $v);
+            foreach ($map[$key] as $i => $aggregatedValue){
+                $map[$key][$i] += $sampleValues[$i];
+            }
+
+            $storage->put($key, $sampleValues);
 
             $storageData = iterator_to_array($storage);
 
@@ -77,8 +73,8 @@ class HashMapFileStorageTest extends TestCase
         yield '2020-01-01' => [1, 2, -3.01];
         yield '2020-01-01' => [2, 2, 5];
         yield '2020-02-01' => [1, -0.9, 1];
-        yield '2020-01-01' => [2, 8, 1];
-        yield '2020-03-01' => [0.8, 2, 5];
+        yield '2020-01-01' => [2, 8, -99];
+        yield '2020-03-01' => [0.8, 2, 6];
         yield '2020-02-01' => [1, -0.9, 1];
         yield '2020-04-01' => [15, 0.8, -1];
         yield '2020-10-01' => [2, -0.33, 88];
